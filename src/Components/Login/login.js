@@ -1,4 +1,4 @@
-import TrackIt from './images/trackit.svg'
+import TrackIt from '../Shared/images/trackit.svg'
 import { Container, Image, Form, Ancora } from './cssLogin'
 
 export default function Login() {
@@ -8,7 +8,7 @@ export default function Login() {
         <Form>
             <input type='text' id='email' placeholder='email'/>
             <input type='text' id='senha' placeholder='senha'/>
-            <input type='submit' id='submit'/>
+            <input type='submit' id='submit' value="Entrar"/>
         </Form>
         <Ancora src='#'>Não tem uma conta? Cadastre-se!</Ancora>
         </Container>
