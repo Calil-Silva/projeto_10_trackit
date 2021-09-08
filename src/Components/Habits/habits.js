@@ -1,17 +1,13 @@
 
-import TrackIt from '../Shared/images/trackit2.svg'
-import User from '../Shared/images/user.png'
-import Increment from '../Shared/images/+.svg'
+import Increment from '../../Shared/images/+.svg'
 import Menu from "../../Shared/Components/Menu/menu";
-import { Navbar, MyHabits, Add, NewHabit, NoHabitsText } from './cssHabits'
+import { MyHabits, Add, NewHabit, NoHabitsText } from './cssHabits'
+import Navbar from '../../Shared/Components/Navbar/navbar';
 
 export default function Habits() {
     return (
         <>
-            <Navbar>
-                <img src={TrackIt} alt='' id='trackit' />
-                <img src={User} alt='' id='user' />
-            </Navbar>
+            <Navbar />
             <MyHabits>
                 <h1>Meus hábitos</h1>
                 <Add>

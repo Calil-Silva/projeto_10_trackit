@@ -1,4 +1,4 @@
-import TrackIt from '../Shared/images/trackit.svg'
+import TrackIt from '../../Shared/images/trackit.svg'
 import { Container, Image, Form, Ancora } from './cssRegister'
 
 export default function Register() {

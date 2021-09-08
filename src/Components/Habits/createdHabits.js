@@ -1,5 +1,5 @@
 import { Habit } from './cssCreatedHabits'
-import TrashCan from '../Shared/images/trashcan.png'
+import TrashCan from '../../Shared/images/trashcan.png'
 
 export default function CreatedHabits() {
     return (
