@@ -1,14 +1,16 @@
-import { BrowserRouter, BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import '../reset.css'
 import Login from "./Login/login";
 import Register from "./Register/register";
-import '../reset.css'
+import Habits from "./Habits/habits";
+import CreatedHabits from "./Habits/createdHabits";
 
 export default function App() {
   return (
-    <Router>
+    <BrowserRouter>
     <Switch>
-      <Route path='/' exact component={Register} />
+      <Route path='/' exact component={Habits} />
     </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
