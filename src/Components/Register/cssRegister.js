@@ -21,13 +21,16 @@ const Form = styled.div`
         margin-bottom: 6px;
         font-size: 20px;
         ::placeholder {
-            color: #DBDBDB;
+        color: #DBDBDB;
         }
         border-radius: 5px;
     }
     button {
         background-color: #52B6FF;
         color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 `;
 
