@@ -13,8 +13,8 @@ const Image = styled.img`
     height: 178px;
 `;
 
-const Form = styled.form`
-    input#email, input#senha, input#submit {
+const Form = styled.div`
+    input#email, input#senha, button {
         border: 1px solid #D4D4D4;
         height: 45px;
         width: 100%;
@@ -25,9 +25,12 @@ const Form = styled.form`
         }
         border-radius: 5px;
     }
-    input#submit {
+    button {
         background-color: #52B6FF;
-            color: #fff;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 `;
 
