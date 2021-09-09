@@ -22,9 +22,10 @@ const Form = styled.div`
         font-size: 20px;
         ::placeholder {
             color: #DBDBDB;
-        }
+        };
         border-radius: 5px;
-    }
+    };
+
     button {
         background-color: #52B6FF;
         color: #fff;
