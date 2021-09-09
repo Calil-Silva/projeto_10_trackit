@@ -1,16 +1,18 @@
 import TrackIt from '../../Shared/images/trackit.svg';
 import { Container, Image, Form, Ancora } from './cssLogin';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { postLogin } from '../../Services/axios';
 import { useHistory, Link } from 'react-router-dom';
 import LoaderSpinner from '../../Shared/Components/spinner/loader';
+import UserContext from '../../Shared/Components/userContext/userContext';
 
-export default function Login() {
+export default function Login({ setUserData }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState('Entrar');
     const [disabled, setDisabled] = useState(false)
     const history = useHistory();
+    const user = useContext(UserContext);
 
     function isRegistered() {
         const body = {
@@ -21,8 +23,9 @@ export default function Login() {
         setLoading(<LoaderSpinner />)
         setDisabled(true)
 
-        postLogin(body).then(() => {
-            history.push('/hoje');
+        postLogin(body).then(res => {
+            user.setUserData(res.data);
+            history.push('/hoje'); 
         }).catch(() => {
             alert('Usuário ou senha inválidos');
             setLoading('Entrar');

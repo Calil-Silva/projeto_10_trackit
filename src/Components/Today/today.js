@@ -1,7 +1,7 @@
 import Menu from "../../Shared/Components/Menu/menu";
 import Navbar from "../../Shared/Components/Navbar/navbar";
 import Check from '../../Shared/images/check.svg';
-import { Header, Habits } from './cssToday'
+import { Header, Habits } from './cssToday';
 
 export default function Today() {
     return (
