@@ -2,11 +2,17 @@ import { MenuBar } from './cssMenu';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Link } from 'react-router-dom';
+import UserContext from '../userContext/userContext';
+import { useContext } from 'react';
+import { getHabits } from '../../../Services/axios';
 
 export default function Menu() {
+    const { userData } = useContext(UserContext);
+    const { token } = userData;
+
     return(
         <MenuBar>
-                <Link to='/habitos'><button>Hábitos</button></Link>
+                <Link to='/habitos'><button onClick={() => getHabits(token)}>Hábitos</button></Link>
                 <div>
                 <Link to='/hoje'><CircularProgressbar value='0' text='Hoje' strokeWidth='9' background={true} backgroundPadding='6' styles={buildStyles({
                     textSize: '18px',
