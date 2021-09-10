@@ -6,13 +6,13 @@ import { useHistory, Link } from 'react-router-dom';
 import LoaderSpinner from '../../Shared/Components/spinner/loader';
 import UserContext from '../../Shared/Components/userContext/userContext';
 
-export default function Login({ setUserData }) {
+export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState('Entrar');
     const [disabled, setDisabled] = useState(false)
     const history = useHistory();
-    const user = useContext(UserContext);
+    const { setUserData } = useContext(UserContext);
 
     function isRegistered() {
         const body = {
@@ -24,7 +24,7 @@ export default function Login({ setUserData }) {
         setDisabled(true)
 
         postLogin(body).then(res => {
-            user.setUserData(res.data);
+            setUserData(res.data);
             history.push('/hoje'); 
         }).catch(() => {
             alert('Usuário ou senha inválidos');

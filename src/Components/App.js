@@ -21,6 +21,8 @@ export default function App() {
       <Route path='/' exact component={Login} setUserData={setUserData}/>
       <Route path='/cadastro' exact component={Register} />
       <Route path='/hoje' exact component={Today} />
+      <Route path='/habitos' exact component={Habits} />
+      <Route path='/historico' exact component={History} />
     </Switch>
     </BrowserRouter>
     </UserContext.Provider>

@@ -1,16 +1,16 @@
 import { TopBar } from "./cssnavbar";
 import TrackIt from '../../images/trackit2.svg';
-import User from '../../images/user.png';
 import UserContext from "../userContext/userContext";
 import { useContext } from "react";
 
-export default function Navbar({image}) {
-    const user = useContext(UserContext);
+export default function Navbar() {
+    const { userData } = useContext(UserContext);
+    const { image } = userData;
 
     return (
         <TopBar>
             <img src={TrackIt} alt='' id='trackit' />
-            <img src={user.userData.image} alt='' id='user' />
+            <img src={image} alt='' id='user' />
         </TopBar>
     );
 };

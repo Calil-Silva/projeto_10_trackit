@@ -8,13 +8,14 @@ const MenuBar = styled.div`
     background-color: #fff;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     padding: 0 18px;
 
     div {
         height: 91px;
         width: 91px;
         position: relative;
-        bottom: 31px;
+        bottom: 21px;
     }
 
     button {

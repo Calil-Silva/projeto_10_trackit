@@ -1,13 +1,14 @@
 import { MenuBar } from './cssMenu';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { Link } from 'react-router-dom';
 
 export default function Menu() {
     return(
         <MenuBar>
-                <button>Hábitos</button>
+                <Link to='/habitos'><button>Hábitos</button></Link>
                 <div>
-                <CircularProgressbar value='0' text='Hoje' strokeWidth='9' background={true} backgroundPadding='6' styles={buildStyles({
+                <Link to='/hoje'><CircularProgressbar value='0' text='Hoje' strokeWidth='9' background={true} backgroundPadding='6' styles={buildStyles({
                     textSize: '18px',
                     pathTransitionDuration: 0.5,
                     pathColor: '#fff',
@@ -15,9 +16,9 @@ export default function Menu() {
                     strokeLinecap: 'round',
                     backgroundColor: `#52B6FF`,
                     trailColor: '#52B6FF',
-                })}/>
+                })}/></Link>
                 </div>
-                <button>Histórico</button>
+                <Link to='/historico'><button>Histórico</button></Link>
             </MenuBar>
     )
 }
