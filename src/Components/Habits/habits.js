@@ -3,35 +3,70 @@ import Increment from '../../Shared/images/+.svg'
 import Menu from "../../Shared/Components/Menu/menu";
 import { MyHabits, Add, NewHabit, NoHabitsText } from './cssHabits'
 import Navbar from '../../Shared/Components/Navbar/navbar';
+import { useState, useContext } from 'react';
+import Weekdays from './weekdays';
+import { postHabit } from '../../Services/axios';
+import UserContext from '../../Shared/Components/userContext/userContext';
+import { useHistory } from 'react-router-dom';
+import { getHabits } from '../../Services/axios';
+import CreatedHabits from './createdHabits'
 
 export default function Habits() {
+    const [addHabit, setAddHabit] = useState(false);
+    const [name, setName] = useState('');
+    const days = [{ day: 'D', number: 7 }, { day: 'S', number: 1 }, { day: 'T', number: 2 }, { day: 'Q', number: 3 }, { day: 'Q', number: 4 }, { day: 'S', number: 5 }, { day: 'S', number: 8 }];
+    const [daysNumber, setDaysNumber] = useState([]);
+    const { userData } = useContext(UserContext);
+    const { token } = userData;
+    const [disabled, setDisabled] = useState(false);
+    const [userCreatedHabit, setUserCreatedHabit] = useState([]);
+    const history = useHistory();
+
+    function createNewHabit() {
+        if (addHabit === false) {
+            setAddHabit(true);
+        } else {
+            setAddHabit(false);
+        }
+    };
+
+    function postNewHabbit() {
+        setDisabled(true);
+        postHabit(name, daysNumber, token)
+            .then(res => {
+                setDisabled(false);
+                setUserCreatedHabit(res.data);
+                history.push('/habitos')
+            })
+            .catch(() => {
+                alert('Token expirado! Faça o login novamente')
+                setDisabled(false)
+            })
+    }
+
     return (
         <>
             <Navbar />
             <MyHabits>
                 <h1>Meus hábitos</h1>
-                <Add>
+                <Add onClick={createNewHabit}>
                     <img src={Increment} alt='' />
                 </Add>
             </MyHabits>
-            <NewHabit>
-                <input type='text' id='habitName' placeholder='nome do hábito' />
+            <NewHabit addHabit={addHabit}>
+                <input type='text' id='habitName' placeholder='nome do hábito' onChange={e => setName(e.target.value)} value={name} disabled={disabled} />
                 <ul>
-                    <li>D</li>
-                    <li>S</li>
-                    <li>T</li>
-                    <li>Q</li>
-                    <li>Q</li>
-                    <li>S</li>
-                    <li>S</li>
+                    {days.map((el, index) => <Weekdays key={index} element={el} setDaysNumber={setDaysNumber} daysNumber={daysNumber} disabled={disabled} />)}
                 </ul>
                 <div>
-                <button>Cancelar</button>
-                <button>Salvar</button>
+                    <button>Cancelar</button>
+                    <button onClick={postNewHabbit}>Salvar</button>
                 </div>
             </NewHabit>
+            {}
+            <CreatedHabits />
             <NoHabitsText>
-            Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+                Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
             </NoHabitsText>
             <Menu />
         </>

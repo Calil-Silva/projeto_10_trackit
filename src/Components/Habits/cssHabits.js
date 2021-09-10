@@ -28,7 +28,7 @@ height: 180px;
 border-radius: 5px;
 background-color: #ffffff;
 margin: 0 18px 29px;
-display: none;
+display: ${props => props.addHabit === false ? 'none' : ''};
 
 input {
     border: 1px solid #D4D4D4;
@@ -45,19 +45,6 @@ input {
 ul {
     display: flex;
     margin-left: 18px;
-};
-
-li {
-    width: 30px;
-    height: 30px;
-    border-radius: 5px;
-    font-size: 20px;
-    color: #DBDBDB;
-    border: 1px solid #CFCFCF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 4px;
 };
 
 div {
@@ -86,6 +73,20 @@ div button:first-child {
 };
 `;
 
+const List = styled.li`
+width: 30px;
+height: 30px;
+border-radius: 5px;
+font-size: 20px;
+color: ${props => props.weekday === false ? '#DBDBDB' : '#fff'};
+border: 1px solid #CFCFCF;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-right: 4px;
+background-color: ${props => props.weekday === false ? '#fff' : '#cfcfcf'};
+`;
+
 const NoHabitsText = styled.h1`
 font-size: 18px;
 color: #666666;
@@ -98,5 +99,6 @@ export {
     MyHabits,
     Add,
     NewHabit,
-    NoHabitsText
+    NoHabitsText,
+    List
 }

@@ -23,8 +23,25 @@ function getHabits(token) {
     return promise;
 }
 
+function postHabit(name, days, token) {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    const body = {
+        name,
+        days
+    }
+
+    const promise = axios.post(`${BASE_URL}/habits`, body, config);
+    return promise;
+}
+
 export {
     postLogin,
     postRegister,
-    getHabits
+    getHabits,
+    postHabit
 };
