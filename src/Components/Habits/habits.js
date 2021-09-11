@@ -1,7 +1,7 @@
 
 import Increment from '../../Shared/images/+.svg'
 import Menu from "../../Shared/Components/Menu/menu";
-import { MyHabits, Add, NewHabit, NoHabitsText } from './cssHabits'
+import { MyHabits, Add, NewHabit, NoHabitsText, Container } from './cssHabits'
 import Navbar from '../../Shared/Components/Navbar/navbar';
 import { useState, useContext, useEffect } from 'react';
 import Weekdays from './weekdays';
@@ -23,7 +23,7 @@ export default function Habits() {
     const [userCreatedHabit, setUserCreatedHabit] = useState([]);
     console.log(userCreatedHabit)
     let count;
- 
+
     const history = useHistory();
 
     function createNewHabit() {
@@ -69,25 +69,27 @@ export default function Habits() {
 
     return (
         <>
-            <Navbar />
-            <MyHabits>
-                <h1>Meus hábitos</h1>
-                <Add onClick={createNewHabit}>
-                    <img src={Increment} alt='' />
-                </Add>
-            </MyHabits>
-            <NewHabit addHabit={addHabit}>
-                <input type='text' id='habitName' placeholder='nome do hábito' onChange={e => setName(e.target.value)} value={name} disabled={disabled} />
-                <ul>
-                    {days.map((el, index) => <Weekdays key={index} element={el} setDaysNumber={setDaysNumber} daysNumber={daysNumber} disabled={disabled} />)}
-                </ul>
-                <div>
-                    <button>Cancelar</button>
-                    <button onClick={postNewHabbit}>Salvar</button>
-                </div>
-            </NewHabit>
-            {haveHabits()}
-            <Menu />
+                <Navbar />
+                <Container >
+                <MyHabits>
+                    <h1>Meus hábitos</h1>
+                    <Add onClick={createNewHabit}>
+                        <img src={Increment} alt='' />
+                    </Add>
+                </MyHabits>
+                <NewHabit addHabit={addHabit}>
+                    <input type='text' id='habitName' placeholder='nome do hábito' onChange={e => setName(e.target.value)} value={name} disabled={disabled} />
+                    <ul>
+                        {days.map((el, index) => <Weekdays key={index} element={el} setDaysNumber={setDaysNumber} daysNumber={daysNumber} disabled={disabled} />)}
+                    </ul>
+                    <div>
+                        <button>Cancelar</button>
+                        <button onClick={postNewHabbit}>Salvar</button>
+                    </div>
+                </NewHabit>
+                {haveHabits()}
+                </Container>
+                <Menu />
         </>
     )
 }

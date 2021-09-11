@@ -1,10 +1,15 @@
 import styled from "styled-components"
 
+const Container = styled.div`
+margin: 0 18px 110px;
+
+` 
+
 const MyHabits = styled.div`
 display: flex;
 justify-content: space-between;
 align-items: center;
-margin: 100px 18px 28px;
+margin: 100px 0 28px;
 
 h1 {
     font-size: 23px;
@@ -23,19 +28,21 @@ border-radius: 5px;
 `;
 
 const NewHabit = styled.div`
-width: 340px;
+width: 100%;
 height: 180px;
 border-radius: 5px;
 background-color: #ffffff;
-margin: 0 18px 29px;
+margin: 0 0 29px;
+padding: 18px;
 display: ${props => props.addHabit === false ? 'none' : ''};
 
 input {
     border: 1px solid #D4D4D4;
     border-radius: 5px;
-    width: 303px;
+    width: 100%;
     height: 45px;
-    margin: 18px 18px 8px;
+    margin-bottom: 8px;
+    font-size: 20px;
     ::placeholder {
         color: #DBDBDB;
         font-size: 20px;
@@ -44,7 +51,6 @@ input {
 
 ul {
     display: flex;
-    margin-left: 18px;
 };
 
 div {
@@ -56,7 +62,6 @@ div button {
     width: 84px;
     height: 35px;
     border-radius: 5px;
-    margin-right: 18px;
     margin-top: 29px;
 };
 
@@ -91,11 +96,10 @@ const NoHabitsText = styled.h1`
 font-size: 18px;
 color: #666666;
 word-wrap: break-word;
-margin-left: 18px;
-margin-right: 18px;
 `;
 
 export {
+    Container,
     MyHabits,
     Add,
     NewHabit,

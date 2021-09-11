@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
 const Habit = styled.div`
-    margin: 0 18px 10px;
-    width: 340px;
+    margin-bottom: 10px;
+    width: 100%;
     height: 91px;
     background-color: #fff;
     padding: 15px;
@@ -17,6 +17,7 @@ const Habit = styled.div`
 
     ul {
     display: flex;
+    
     };
 
     li {
