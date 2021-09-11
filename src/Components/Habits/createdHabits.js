@@ -1,12 +1,19 @@
 import { Habit } from './cssCreatedHabits'
 import TrashCan from '../../Shared/images/trashcan.png'
-import { useState } from 'react'; 
-import Weekdays from './weekdays';
+import { deleteHabit } from '../../Services/axios';
+import UserContext from '../../Shared/Components/userContext/userContext';
+import { useContext } from 'react';
 
-export default function CreatedHabits({ name, days }) {
+export default function CreatedHabits({ name, days, id, setUserCreatedHabit, userCreatedHabit }) {
     const dayweek = [{ day: 'D', number: 7 }, { day: 'S', number: 1 }, { day: 'T', number: 2 }, { day: 'Q', number: 3 }, { day: 'Q', number: 4 }, { day: 'S', number: 5 }, { day: 'S', number: 8 }];
-    const setDay = (days)
-    console.log(days, name)
+    const { userData } = useContext(UserContext);
+    const { token } = userData;
+
+    function deleteThisHabit() {
+        deleteHabit(id, token);
+        setUserCreatedHabit(userCreatedHabit = userCreatedHabit.filter((element) => element.id !== id));
+    }
+
     return (
         <>
         <Habit>
@@ -15,7 +22,7 @@ export default function CreatedHabits({ name, days }) {
             <ul>
                 {dayweek.map((element, index) => <li key={index} style={ days.includes(element.number) ? {backgroundColor: '#cfcfcf', color: '#fff'} : {backgroundColor: '#fff'} }>{element.day}</li>)}
             </ul>
-            <img src={TrashCan} alt='' />
+            <img src={TrashCan} alt='' onClick={deleteThisHabit}/>
         </Habit>
         </>
     )

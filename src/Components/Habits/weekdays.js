@@ -1,5 +1,5 @@
 import { List } from "./cssHabits";
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
 export default function Weekdays({element, setDaysNumber, daysNumber, disabled}) {
     const [weekday, setWeekday] = useState(false);

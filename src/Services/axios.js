@@ -39,9 +39,22 @@ function postHabit(name, days, token) {
     return promise;
 }
 
+function deleteHabit(id, token) {
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    const promise = axios.delete(`${BASE_URL}/habits/${id}`, config);
+    return promise;
+}
+
 export {
     postLogin,
     postRegister,
     getHabits,
-    postHabit
+    postHabit,
+    deleteHabit
 };

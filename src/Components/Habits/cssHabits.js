@@ -83,7 +83,7 @@ width: 30px;
 height: 30px;
 border-radius: 5px;
 font-size: 20px;
-color: ${props => props.weekday === false ? '#DBDBDB' : '#fff'};
+color: ${props => props.weekday === false ? '#cfcfcf' : '#fff'};
 border: 1px solid #CFCFCF;
 display: flex;
 justify-content: center;

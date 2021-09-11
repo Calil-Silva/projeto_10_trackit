@@ -7,56 +7,42 @@ import { useState, useContext, useEffect } from 'react';
 import Weekdays from './weekdays';
 import { postHabit } from '../../Services/axios';
 import UserContext from '../../Shared/Components/userContext/userContext';
-import { useHistory } from 'react-router-dom';
 import CreatedHabits from './createdHabits'
-import HabitContext from '../../Shared/Components/userContext/habbitContext';
 import { getHabits } from '../../Services/axios';
 
 export default function Habits() {
     const [addHabit, setAddHabit] = useState(false);
     const [name, setName] = useState('');
-    const days = [{ day: 'D', number: 7 }, { day: 'S', number: 1 }, { day: 'T', number: 2 }, { day: 'Q', number: 3 }, { day: 'Q', number: 4 }, { day: 'S', number: 5 }, { day: 'S', number: 8 }];
+    const days = [{ day: 'D', number: 7 }, { day: 'S', number: 1 }, { day: 'T', number: 2 }, { day: 'Q', number: 3 }, { day: 'Q', number: 4 }, { day: 'S', number: 5 }, { day: 'S', number: 6 }];
     const [daysNumber, setDaysNumber] = useState([]);
     const { userData } = useContext(UserContext);
     const { token } = userData;
     const [disabled, setDisabled] = useState(false);
     const [userCreatedHabit, setUserCreatedHabit] = useState([]);
     console.log(userCreatedHabit)
-    let count;
-
-    const history = useHistory();
-
-    function createNewHabit() {
-        if (addHabit === false) {
-            setAddHabit(true);
-        } else {
-            setAddHabit(false);
-        }
-    };
 
     function postNewHabbit() {
         setDisabled(true);
         postHabit(name, daysNumber, token)
             .then(res => {
                 setDisabled(false);
-                history.push('/habitos')
-                count = true;
+                setAddHabit(false);
+                setName('');
             })
-            .catch(() => {
-                alert('Token expirado! Faça o login novamente')
+            .catch(err => {
+                alert(`${err.response.data.details}`)
                 setDisabled(false)
-                history.push('/')
             })
     }
 
     useEffect(() => {
         getHabits(token).then(res => setUserCreatedHabit([...res.data]));
-    }, [count])
+    }, [addHabit])
 
     function haveHabits() {
         if (userCreatedHabit.length !== 0) {
             return (
-                userCreatedHabit.map((element) => <CreatedHabits key={element.id} name={element.name} days={element.days} />)
+                userCreatedHabit.map((element) => <CreatedHabits key={element.id} name={element.name} days={element.days} id={element.id} setUserCreatedHabit={setUserCreatedHabit} userCreatedHabit={userCreatedHabit}/>)
             )
         } else {
             return (
@@ -73,18 +59,24 @@ export default function Habits() {
                 <Container >
                 <MyHabits>
                     <h1>Meus hábitos</h1>
-                    <Add onClick={createNewHabit}>
+                    <Add onClick={() => !addHabit ? setAddHabit(true) : ''}>
                         <img src={Increment} alt='' />
                     </Add>
                 </MyHabits>
                 <NewHabit addHabit={addHabit}>
                     <input type='text' id='habitName' placeholder='nome do hábito' onChange={e => setName(e.target.value)} value={name} disabled={disabled} />
                     <ul>
-                        {days.map((el, index) => <Weekdays key={index} element={el} setDaysNumber={setDaysNumber} daysNumber={daysNumber} disabled={disabled} />)}
+                        {days.map((el, index) => <Weekdays key={index} element={el} setDaysNumber={setDaysNumber} daysNumber={daysNumber} disabled={disabled}/>)}
                     </ul>
                     <div>
-                        <button>Cancelar</button>
-                        <button onClick={postNewHabbit}>Salvar</button>
+                        <button onClick={() => addHabit ? setAddHabit(false) : ''}>Cancelar</button>
+                        <button onClick={() => {
+                            if(name ==='' || daysNumber.length === 0) {
+                                alert('Preencha todos os campos!')
+                            } else {
+                                postNewHabbit();
+                            }
+                        }}>Salvar</button>
                     </div>
                 </NewHabit>
                 {haveHabits()}
