@@ -4,10 +4,8 @@ import { useState } from "react";
 import Login from "./Login/login";
 import Register from "./Register/register";
 import Habits from "./Habits/habits";
-import CreatedHabits from "./Habits/createdHabits";
 import Today from "./Today/today";
 import History from "./History/history";
-import LoaderSpinner from "../Shared/Components/spinner/loader";
 import UserContext from "../Shared/Components/userContext/userContext";
 
 export default function App() {

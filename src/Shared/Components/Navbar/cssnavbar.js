@@ -9,6 +9,7 @@ width: 100%;
 display: flex;
 justify-content: space-between;
 align-items: center;
+z-index: 1;
 
 #trackit {
     height: 49px;

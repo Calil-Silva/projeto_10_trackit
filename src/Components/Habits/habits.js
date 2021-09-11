@@ -3,13 +3,14 @@ import Increment from '../../Shared/images/+.svg'
 import Menu from "../../Shared/Components/Menu/menu";
 import { MyHabits, Add, NewHabit, NoHabitsText } from './cssHabits'
 import Navbar from '../../Shared/Components/Navbar/navbar';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Weekdays from './weekdays';
 import { postHabit } from '../../Services/axios';
 import UserContext from '../../Shared/Components/userContext/userContext';
 import { useHistory } from 'react-router-dom';
-import { getHabits } from '../../Services/axios';
 import CreatedHabits from './createdHabits'
+import HabitContext from '../../Shared/Components/userContext/habbitContext';
+import { getHabits } from '../../Services/axios';
 
 export default function Habits() {
     const [addHabit, setAddHabit] = useState(false);
@@ -20,6 +21,9 @@ export default function Habits() {
     const { token } = userData;
     const [disabled, setDisabled] = useState(false);
     const [userCreatedHabit, setUserCreatedHabit] = useState([]);
+    console.log(userCreatedHabit)
+    let count;
+ 
     const history = useHistory();
 
     function createNewHabit() {
@@ -35,13 +39,32 @@ export default function Habits() {
         postHabit(name, daysNumber, token)
             .then(res => {
                 setDisabled(false);
-                setUserCreatedHabit(res.data);
                 history.push('/habitos')
+                count = true;
             })
             .catch(() => {
                 alert('Token expirado! Faça o login novamente')
                 setDisabled(false)
+                history.push('/')
             })
+    }
+
+    useEffect(() => {
+        getHabits(token).then(res => setUserCreatedHabit([...res.data]));
+    }, [count])
+
+    function haveHabits() {
+        if (userCreatedHabit.length !== 0) {
+            return (
+                userCreatedHabit.map((element) => <CreatedHabits key={element.id} name={element.name} days={element.days} />)
+            )
+        } else {
+            return (
+                <NoHabitsText>
+                    Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+                </NoHabitsText>
+            )
+        }
     }
 
     return (
@@ -63,11 +86,7 @@ export default function Habits() {
                     <button onClick={postNewHabbit}>Salvar</button>
                 </div>
             </NewHabit>
-            {}
-            <CreatedHabits />
-            <NoHabitsText>
-                Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
-            </NoHabitsText>
+            {haveHabits()}
             <Menu />
         </>
     )
