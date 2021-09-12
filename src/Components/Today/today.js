@@ -30,7 +30,7 @@ export default function Today() {
             <Container>
                 <Header>
                     <h1>{dayjs().locale('pt-br').format('dddd DD-MM')}</h1>
-                    <span>Nenhum hábito concluído ainda</span>
+                    {progress === 0 ? <span>Nenhum hábito concluído ainda</span> : <span>{progress}% dos hábitos concluídos</span>}
                 </Header>
                     {today.map((element) => <TodayHabits key={element.id} name={element.name} done={element.done} currentSequence={element.currentSequence} highestSequence={element.highestSequence} id={element.id} setChange={setChange} change={change}/>)}
             </Container>
