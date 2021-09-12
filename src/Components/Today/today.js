@@ -1,33 +1,32 @@
 import Menu from "../../Shared/Components/Menu/menu";
 import Navbar from "../../Shared/Components/Navbar/navbar";
-import Check from '../../Shared/images/check.svg';
-import { Header, Habits, Container } from './cssToday';
+import { Header, Container } from './cssToday';
+import UserContext from "../../Shared/Components/userContext/userContext";
+import { useContext, useEffect, useState } from "react";
+import { getTodayHabits } from "../../Services/axios";
+import TodayHabits from "./todayHabits";
+// import 'dayjs/locale/pt-br'
 
 export default function Today() {
+    const { userData } = useContext(UserContext);
+    const { token } = userData;
+    const [today, setToday] =  useState([]);
+    // var dayjs = require('dayjs');
+    // dayjs.locale('pt-br');
+
+    useEffect(() => {
+        getTodayHabits(token).then(res => setToday([...res.data]));
+    }, [])
+
     return (
         <>
             <Navbar />
             <Container>
                 <Header>
-                    <h1>Segunda, 17/05</h1>
+                    <h1>segunda</h1>
                     <span>Nenhum hábito concluído ainda</span>
                 </Header>
-                <Habits>
-                    <div>
-                        <h1>
-                            Ler 1 capítulo de livro
-                        </h1>
-                        <span>
-                            Sequência atual: 3 dias
-                        </span>
-                        <span>
-                            Seu recorde: 5 dias
-                        </span>
-                    </div>
-                    <div>
-                        <img src={Check} alt='' />
-                    </div>
-                </Habits>
+                    {today.map((element) => <TodayHabits key={element.id} name={element.name} done={element.done} currentSequence={element.currentSequence} highestSequence={element.highestSequence}/>)}
             </Container>
             <Menu />
         </>

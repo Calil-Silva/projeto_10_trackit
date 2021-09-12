@@ -48,7 +48,7 @@ const Habits = styled.div`
     };
 
     div:last-child {
-        background-color: #EBEBEB;
+        background-color: ${props => props.done ? 'green' : '#EBEBEB'};
         width: 69px;
         height: 100%;
         border-radius: 5px;

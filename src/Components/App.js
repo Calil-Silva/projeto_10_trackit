@@ -10,7 +10,6 @@ import UserContext from "../Shared/Components/userContext/userContext";
 
 export default function App() {
   const [userData, setUserData] = useState('')
-  console.log(userData);
 
   return (
     <UserContext.Provider value={{userData, setUserData}}>
