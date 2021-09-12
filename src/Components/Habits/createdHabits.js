@@ -5,7 +5,7 @@ import UserContext from '../../Shared/Components/userContext/userContext';
 import { useContext } from 'react';
 
 export default function CreatedHabits({ name, days, id, setUserCreatedHabit, userCreatedHabit }) {
-    const dayweek = [{ day: 'D', number: 7 }, { day: 'S', number: 1 }, { day: 'T', number: 2 }, { day: 'Q', number: 3 }, { day: 'Q', number: 4 }, { day: 'S', number: 5 }, { day: 'S', number: 8 }];
+    const dayweek = [{ day: 'D', number: 7 }, { day: 'S', number: 1 }, { day: 'T', number: 2 }, { day: 'Q', number: 3 }, { day: 'Q', number: 4 }, { day: 'S', number: 5 }, { day: 'S', number: 6 }];
     const { userData } = useContext(UserContext);
     const { token } = userData;
 
