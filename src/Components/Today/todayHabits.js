@@ -25,16 +25,16 @@ export default function TodayHabits({ name, done, currentSequence, highestSequen
 
     return (
         <>
-            <Habits selectDone={selectDone}>
+            <Habits selectDone={selectDone} currentSequence={currentSequence} highestSequence={highestSequence}>
                 <div>
                     <h1>
                         {name}
                     </h1>
                     <span>
-                        Sequência atual: {currentSequence} dias
+                    Sequência atual: &nbsp; {currentSequence === 1 ? <h2>{currentSequence} dia</h2> : <h2>{currentSequence} dias</h2>}
                     </span>
                     <span>
-                        Seu recorde: {highestSequence} dias
+                        Seu recorde: &nbsp; {highestSequence === 1 ? <h3>{highestSequence} dia</h3> : <h2>{highestSequence} dias</h2>}
                     </span>
                 </div>
                 <div onClick={habitDone}>

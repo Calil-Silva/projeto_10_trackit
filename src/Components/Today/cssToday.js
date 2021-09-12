@@ -44,7 +44,16 @@ const Habits = styled.div`
         span {
             font-size: 13px;
             color: #666666;
+            display: flex;
         };
+
+        h2 {
+            color: ${props => props.selectDone === true ? 'lightGreen' : '#666666'};
+        }
+
+        h3 {
+            color: ${props => props.highestSequence === props.currentSequence ? 'lightGreen' : '#666666'};
+        }
     };
 
     div:last-child {
