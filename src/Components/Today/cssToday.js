@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
+const Container = styled.div`
+    margin 0 18px 0;
+`
+
 const Header = styled.div`
-    margin: 100px 18px 28px;
+    margin: 100px 0 28px;
 
     h1 {
         font-size: 23px;
@@ -16,9 +20,9 @@ const Header = styled.div`
 `;
 
 const Habits = styled.div`
-    width: 340px;
+    width: 100%;
     height: 94px;
-    margin: 0 18px 10px;
+    margin-bottom: 10px;
     background-color: #fff;
     border: 1px solid #E7E7E7;
     border-radius: 5px;
@@ -46,7 +50,7 @@ const Habits = styled.div`
     div:last-child {
         background-color: #EBEBEB;
         width: 69px;
-        height: 69px;
+        height: 100%;
         border-radius: 5px;
         display: flex;
         justify-content: center;
@@ -61,5 +65,6 @@ const Habits = styled.div`
 
 export {
     Header,
-    Habits
+    Habits,
+    Container
 }
