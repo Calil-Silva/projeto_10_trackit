@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-    margin 0 18px 0;
+    margin 0 18px 110px;
 `
 
 const Header = styled.div`
@@ -48,7 +48,7 @@ const Habits = styled.div`
     };
 
     div:last-child {
-        background-color: ${props => props.done ? 'green' : '#EBEBEB'};
+        background-color: ${props => props.selectDone === true ? 'lightGreen' : '#EBEBEB'};
         width: 69px;
         height: 100%;
         border-radius: 5px;

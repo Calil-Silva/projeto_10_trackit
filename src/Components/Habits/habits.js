@@ -42,7 +42,7 @@ export default function Habits() {
     function haveHabits() {
         if (userCreatedHabit.length !== 0) {
             return (
-                userCreatedHabit.map((element) => <CreatedHabits key={element.id} name={element.name} days={element.days} id={element.id} setUserCreatedHabit={setUserCreatedHabit} userCreatedHabit={userCreatedHabit}/>)
+                userCreatedHabit.map((element) => <CreatedHabits key={element.id} name={element.name} days={element.days} id={element.id} setUserCreatedHabit={setUserCreatedHabit} userCreatedHabit={userCreatedHabit} />)
             )
         } else {
             return (
@@ -55,8 +55,8 @@ export default function Habits() {
 
     return (
         <>
-                <Navbar />
-                <Container >
+            <Navbar />
+            <Container >
                 <MyHabits>
                     <h1>Meus hábitos</h1>
                     <Add onClick={() => !addHabit ? setAddHabit(true) : ''}>
@@ -66,12 +66,12 @@ export default function Habits() {
                 <NewHabit addHabit={addHabit}>
                     <input type='text' id='habitName' placeholder='nome do hábito' onChange={e => setName(e.target.value)} value={name} disabled={disabled} />
                     <ul>
-                        {days.map((el, index) => <Weekdays key={index} element={el} setDaysNumber={setDaysNumber} daysNumber={daysNumber} disabled={disabled} addHabit={addHabit}/>)}
+                        {days.map((el, index) => <Weekdays key={index} element={el} setDaysNumber={setDaysNumber} daysNumber={daysNumber} disabled={disabled} addHabit={addHabit} />)}
                     </ul>
                     <div>
                         <button onClick={() => addHabit ? setAddHabit(false) : ''}>Cancelar</button>
                         <button onClick={() => {
-                            if(name ==='' || daysNumber.length === 0) {
+                            if (name === '' || daysNumber.length === 0) {
                                 alert('Preencha todos os campos!')
                             } else {
                                 postNewHabbit();
@@ -80,8 +80,8 @@ export default function Habits() {
                     </div>
                 </NewHabit>
                 {haveHabits()}
-                </Container>
-                <Menu />
+            </Container>
+            <Menu />
         </>
     )
 }

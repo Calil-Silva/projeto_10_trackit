@@ -3,13 +3,13 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Link } from 'react-router-dom';
 
-export default function Menu() {
+export default function Menu({ progress }) {
 
     return (
         <MenuBar>
             <Link to="/habitos"><button>Hábitos</button></Link>
             <div>
-                <Link to='/hoje'><CircularProgressbar value='0' text='Hoje' strokeWidth='9' background={true} backgroundPadding='6' styles={buildStyles({
+                <Link to='/hoje'><CircularProgressbar value={progress} text='Hoje' strokeWidth='9' background={true} backgroundPadding='6' styles={buildStyles({
                     textSize: '18px',
                     pathTransitionDuration: 0.5,
                     pathColor: '#fff',

@@ -63,11 +63,37 @@ function getTodayHabits(token) {
     return promise;
 }
 
+function postDone(token, id) {
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    const promise = axios.post(`${BASE_URL}/habits/${id}/check`, "", config)
+    return promise;
+}
+
+function postUndone(token, id) {
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    const promise = axios.post(`${BASE_URL}/habits/${id}/uncheck`, "", config)
+    return promise;
+}
+
 export {
     postLogin,
     postRegister,
     getHabits,
     postHabit,
     deleteHabit,
-    getTodayHabits
+    getTodayHabits,
+    postDone,
+    postUndone
 };
