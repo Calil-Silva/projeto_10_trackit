@@ -1,9 +1,16 @@
 import { List } from "./cssHabits";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function Weekdays({element, setDaysNumber, daysNumber, disabled}) {
+export default function Weekdays({element, setDaysNumber, daysNumber, disabled, addHabit}) {
     const [weekday, setWeekday] = useState(false);
     const { day, number } = element;
+
+    useEffect(() => {
+        if(!addHabit) {
+            setWeekday(false);
+        };
+    }, [addHabit])
+    
 
     function setDays() {
         if(disabled) {

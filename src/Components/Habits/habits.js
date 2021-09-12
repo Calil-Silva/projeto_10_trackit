@@ -19,7 +19,6 @@ export default function Habits() {
     const { token } = userData;
     const [disabled, setDisabled] = useState(false);
     const [userCreatedHabit, setUserCreatedHabit] = useState([]);
-    console.log(userCreatedHabit)
 
     function postNewHabbit() {
         setDisabled(true);
@@ -28,6 +27,7 @@ export default function Habits() {
                 setDisabled(false);
                 setAddHabit(false);
                 setName('');
+                setDaysNumber([]);
             })
             .catch(err => {
                 alert(`${err.response.data.details}`)
@@ -66,7 +66,7 @@ export default function Habits() {
                 <NewHabit addHabit={addHabit}>
                     <input type='text' id='habitName' placeholder='nome do hábito' onChange={e => setName(e.target.value)} value={name} disabled={disabled} />
                     <ul>
-                        {days.map((el, index) => <Weekdays key={index} element={el} setDaysNumber={setDaysNumber} daysNumber={daysNumber} disabled={disabled}/>)}
+                        {days.map((el, index) => <Weekdays key={index} element={el} setDaysNumber={setDaysNumber} daysNumber={daysNumber} disabled={disabled} addHabit={addHabit}/>)}
                     </ul>
                     <div>
                         <button onClick={() => addHabit ? setAddHabit(false) : ''}>Cancelar</button>

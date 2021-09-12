@@ -9,21 +9,28 @@ export default function CreatedHabits({ name, days, id, setUserCreatedHabit, use
     const { userData } = useContext(UserContext);
     const { token } = userData;
 
+
+
     function deleteThisHabit() {
-        deleteHabit(id, token);
-        setUserCreatedHabit(userCreatedHabit = userCreatedHabit.filter((element) => element.id !== id));
+
+        if (window.confirm("Deletar este hábito?")) {
+            deleteHabit(id, token);
+            setUserCreatedHabit(userCreatedHabit = userCreatedHabit.filter((element) => element.id !== id));
+        } else {
+            return;
+        }
     }
 
     return (
         <>
-        <Habit>
-            <h1>{name}</h1>
-            
-            <ul>
-                {dayweek.map((element, index) => <li key={index} style={ days.includes(element.number) ? {backgroundColor: '#cfcfcf', color: '#fff'} : {backgroundColor: '#fff'} }>{element.day}</li>)}
-            </ul>
-            <img src={TrashCan} alt='' onClick={deleteThisHabit}/>
-        </Habit>
+            <Habit>
+                <h1>{name}</h1>
+
+                <ul>
+                    {dayweek.map((element, index) => <li key={index} style={days.includes(element.number) ? { backgroundColor: '#cfcfcf', color: '#fff' } : { backgroundColor: '#fff' }}>{element.day}</li>)}
+                </ul>
+                <img src={TrashCan} alt='' onClick={deleteThisHabit} />
+            </Habit>
         </>
     )
 };
