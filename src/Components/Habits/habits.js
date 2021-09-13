@@ -9,7 +9,6 @@ import { postHabit } from '../../Services/axios';
 import UserContext from '../../Shared/Components/userContext/userContext';
 import CreatedHabits from './createdHabits'
 import { getHabits } from '../../Services/axios';
-import HabitContext from '../../Shared/Components/userContext/habbitContext';
 
 export default function Habits() {
     const [addHabit, setAddHabit] = useState(false);
@@ -20,7 +19,6 @@ export default function Habits() {
     const { token } = userData;
     const [disabled, setDisabled] = useState(false);
     const [userCreatedHabit, setUserCreatedHabit] = useState([]);
-    const teste = useContext(HabitContext);
 
     function postNewHabbit() {
         setDisabled(true);
@@ -83,7 +81,7 @@ export default function Habits() {
                 </NewHabit>
                 {haveHabits()}
             </Container>
-            <Menu teste={teste}/>
+            <Menu />
         </>
     )
 }

@@ -2,11 +2,11 @@ import { MenuBar } from './cssMenu';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Link } from 'react-router-dom';
-import HabitContext from '../userContext/habbitContext';
+import UserContext from '../userContext/userContext';
 import { useContext } from 'react';
 
 export default function Menu() {
-    const progress = useContext(HabitContext);
+    const { progress } = useContext(UserContext);
 
     return (
         <MenuBar>

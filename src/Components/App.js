@@ -13,12 +13,12 @@ export default function App() {
   const [progress, setProgress] = useState(0);
 
   return (
-    <UserContext.Provider value={{userData, setUserData}}>
+    <UserContext.Provider value={{userData, setUserData, setProgress, progress}}>
     <BrowserRouter>
     <Switch>
       <Route path='/' exact component={Login} setUserData={setUserData}/>
       <Route path='/cadastro' exact component={Register} />
-      <Route path='/hoje' exact component={Today} setProgress={setProgress}/>
+      <Route path='/hoje' exact component={Today}/>
       <Route path='/habitos' exact component={Habits} />
       <Route path='/historico' exact component={History} />
     </Switch>
