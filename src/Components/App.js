@@ -9,7 +9,8 @@ import History from "./History/history";
 import UserContext from "../Shared/Components/userContext/userContext";
 
 export default function App() {
-  const [userData, setUserData] = useState('')
+  const [userData, setUserData] = useState('');
+  const [progress, setProgress] = useState(0);
 
   return (
     <UserContext.Provider value={{userData, setUserData}}>
@@ -17,7 +18,7 @@ export default function App() {
     <Switch>
       <Route path='/' exact component={Login} setUserData={setUserData}/>
       <Route path='/cadastro' exact component={Register} />
-      <Route path='/hoje' exact component={Today} />
+      <Route path='/hoje' exact component={Today} setProgress={setProgress}/>
       <Route path='/habitos' exact component={Habits} />
       <Route path='/historico' exact component={History} />
     </Switch>

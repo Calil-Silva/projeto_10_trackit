@@ -6,8 +6,9 @@ import { useContext, useEffect, useState } from "react";
 import { getTodayHabits } from "../../Services/axios";
 import TodayHabits from "./todayHabits";
 import 'dayjs/locale/pt-br'
+import HabitContext from "../../Shared/Components/userContext/habbitContext";
 
-export default function Today() {
+export default function Today( { setProgress } ) {
     const { userData } = useContext(UserContext);
     const { token } = userData;
     const [today, setToday] =  useState([]);
@@ -26,15 +27,17 @@ export default function Today() {
 
     return (
         <>
+        <HabitContext.Provider value={progress} >
             <Navbar />
             <Container>
                 <Header>
-                    <h1>{dayjs().locale('pt-br').format('dddd DD-MM')}</h1>
-                    {progress === 0 ? <span>Nenhum hábito concluído ainda</span> : <span>{progress}% dos hábitos concluídos</span>}
+                    <h1>{dayjs().locale('pt-br').format('dddd - DD/MM')}</h1>
+                    {progress === 0 || Number.isNaN(progress) ? <span>Nenhum hábito concluído ainda</span> : <span>{progress}% dos hábitos concluídos</span>}
                 </Header>
                     {today.map((element) => <TodayHabits key={element.id} name={element.name} done={element.done} currentSequence={element.currentSequence} highestSequence={element.highestSequence} id={element.id} setChange={setChange} change={change}/>)}
             </Container>
-            <Menu progress={progress}/>
+            <Menu/>
+            </HabitContext.Provider>
         </>
     );
 };
